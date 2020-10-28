@@ -25,7 +25,7 @@ public class Users {
     @Column(length = 10, nullable = false, unique = true)
     private String mobileNo;
 
-    private double walletMoney;
+    private double walletMoney = 100000.00;
 
     @Override
     public String toString() {
