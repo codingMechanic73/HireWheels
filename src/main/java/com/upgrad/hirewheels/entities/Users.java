@@ -1,6 +1,7 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -10,16 +11,16 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String firstName;
 
     @Column(length = 50)
     private String lastName;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String password;
 
-    @Column(length = 50, nullable = false, unique = true)
+    @Column(length = 50, unique = true)
     private String email;
 
     @Column(length = 10, nullable = false, unique = true)
@@ -27,18 +28,13 @@ public class Users {
 
     private double walletMoney = 100000.00;
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", mobileNo='" + mobileNo + '\'' +
-                ", walletMoney=" + walletMoney +
-                '}';
-    }
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Booking> bookings;
+
 
     public int getUserId() {
         return userId;
@@ -94,5 +90,27 @@ public class Users {
 
     public void setWalletMoney(double walletMoney) {
         this.walletMoney = walletMoney;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
+                ", walletMoney=" + walletMoney +
+                ", role=" + role +
+                '}';
     }
 }

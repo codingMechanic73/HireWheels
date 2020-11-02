@@ -1,18 +1,20 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table
 public class VehicleCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int vehicleCategoryId;
 
-    @Column(length = 50, nullable = false, unique = true)
+    @Column(length = 50, unique = true)
     private String vehicleCategoryName;
 
+    @OneToMany(mappedBy = "vehicleCategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<VehicleSubcategory> vehicleSubcategories;
 
     public int getVehicleCategoryId() {
         return vehicleCategoryId;

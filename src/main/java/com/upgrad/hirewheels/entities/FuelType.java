@@ -1,17 +1,20 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table
 public class FuelType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int fuelTypeId;
 
-    @Column(length = 50, unique = true, nullable = false)
+    @Column(length = 50, unique = true)
     private String fuelType;
+
+    @OneToMany(mappedBy = "fuelType", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Vehicle> vehicles;
 
     public int getFuelTypeId() {
         return fuelTypeId;

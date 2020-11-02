@@ -4,11 +4,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int bookingId;
 
     @Column(nullable = false)
@@ -22,6 +21,18 @@ public class Booking {
 
     @Column(nullable = false)
     private double amount;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
 
     public int getBookingId() {
         return bookingId;
@@ -63,6 +74,30 @@ public class Booking {
         this.amount = amount;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -71,6 +106,9 @@ public class Booking {
                 ", dropoffDate=" + dropoffDate +
                 ", bookingDate=" + bookingDate +
                 ", amount=" + amount +
+                ", location=" + location +
+                ", vehicle=" + vehicle +
+                ", user=" + user +
                 '}';
     }
 }

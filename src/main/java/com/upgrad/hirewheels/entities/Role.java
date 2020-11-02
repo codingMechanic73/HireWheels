@@ -1,17 +1,20 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int roleId;
 
-    @Column(length = 50, unique = true, nullable = false)
+    @Column(length = 50, unique = true)
     private String roleName;
+
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Users> users;
 
     public int getRoleId() {
         return roleId;

@@ -1,29 +1,44 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table
 public class Vehicle {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int vehicleId;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String vehicleModel;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 10)
     private String vehicleNumber;
 
-    @Column(length = 50, nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "vehicle_subcategory_id")
+    private VehicleSubcategory vehicleSubcategory;
+
+    @Column(length = 50)
     private String color;
 
-    @Column(length = 1, nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "fuel_type_id")
+    private FuelType fuelType;
+
+    @Column(length = 1)
     private int availabilityStatus;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 500)
     private String vehicleImageUrl;
+
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Booking> bookings;
 
     public int getVehicleId() {
         return vehicleId;
@@ -49,12 +64,36 @@ public class Vehicle {
         this.vehicleNumber = vehicleNumber;
     }
 
+    public VehicleSubcategory getVehicleSubcategory() {
+        return vehicleSubcategory;
+    }
+
+    public void setVehicleSubcategory(VehicleSubcategory vehicleSubcategory) {
+        this.vehicleSubcategory = vehicleSubcategory;
+    }
+
     public String getColor() {
         return color;
     }
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
     }
 
     public int getAvailabilityStatus() {
@@ -79,7 +118,10 @@ public class Vehicle {
                 "vehicleId=" + vehicleId +
                 ", vehicleModel='" + vehicleModel + '\'' +
                 ", vehicleNumber='" + vehicleNumber + '\'' +
+                ", vehicleSubcategory=" + vehicleSubcategory +
                 ", color='" + color + '\'' +
+                ", location=" + location +
+                ", fuelType=" + fuelType +
                 ", availabilityStatus=" + availabilityStatus +
                 ", vehicleImageUrl='" + vehicleImageUrl + '\'' +
                 '}';
