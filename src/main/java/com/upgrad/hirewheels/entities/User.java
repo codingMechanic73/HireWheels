@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +35,18 @@ public class Users {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Booking> bookings;
 
+    public User(String firstName, String lastName, String password, String email, String mobileNo, double walletMoney, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.mobileNo = mobileNo;
+        this.walletMoney = walletMoney;
+        this.role = role;
+    }
+
+    public User() {
+    }
 
     public int getUserId() {
         return userId;

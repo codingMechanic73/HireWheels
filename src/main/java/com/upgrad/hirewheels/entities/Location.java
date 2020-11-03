@@ -29,6 +29,17 @@ public class Location {
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vehicle> vehicles;
 
+    public Location(int locationId, String locationName, String address, City city, String pincode) {
+        this.locationId = locationId;
+        this.locationName = locationName;
+        this.address = address;
+        this.city = city;
+        this.pincode = pincode;
+    }
+
+    public Location() {
+    }
+
     public int getLocationId() {
         return locationId;
     }

@@ -14,7 +14,20 @@ public class Role {
     private String roleName;
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    List<Users> users;
+    List<User> users;
+
+    public Role(int roleId, String roleName) {
+        this.roleId = roleId;
+        this.roleName = roleName;
+    }
+
+    public Role() {
+
+    }
+
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
 
     public int getRoleId() {
         return roleId;

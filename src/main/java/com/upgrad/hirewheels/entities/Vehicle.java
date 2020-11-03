@@ -40,6 +40,20 @@ public class Vehicle {
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Booking> bookings;
 
+    public Vehicle() {
+    }
+
+    public Vehicle(String vehicleModel, String vehicleNumber, VehicleSubcategory vehicleSubcategory, String color, Location location, FuelType fuelType, int availabilityStatus, String vehicleImageUrl) {
+        this.vehicleModel = vehicleModel;
+        this.vehicleNumber = vehicleNumber;
+        this.vehicleSubcategory = vehicleSubcategory;
+        this.color = color;
+        this.location = location;
+        this.fuelType = fuelType;
+        this.availabilityStatus = availabilityStatus;
+        this.vehicleImageUrl = vehicleImageUrl;
+    }
+
     public int getVehicleId() {
         return vehicleId;
     }
@@ -110,6 +124,14 @@ public class Vehicle {
 
     public void setVehicleImageUrl(String vehicleImageUrl) {
         this.vehicleImageUrl = vehicleImageUrl;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override

@@ -16,6 +16,14 @@ public class City {
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Location> locations;
 
+    public City(int cityId, String cityName) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+    }
+
+    public City() {
+    }
+
     public int getCityId() {
         return cityId;
     }
