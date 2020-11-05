@@ -40,6 +40,10 @@ public class Vehicle {
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Booking> bookings;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Vehicle() {
     }
 

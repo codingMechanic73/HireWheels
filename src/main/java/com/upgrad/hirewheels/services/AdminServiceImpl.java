@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService {
             throws UserNotRegisteredException, UnauthorizedUserException, VehicleAlreadyExistsException {
 
         if (userService.getUsers(user).getRole().getRoleName().equals("ADMIN")) {
-            if (vehicleDao.getVehicleByVehicleNumber(vehicle.getVehicleNumber()).isPresent()) {
+            if (vehicleDao.findByVehicleNumber(vehicle.getVehicleNumber()).isPresent()) {
                 throw new VehicleAlreadyExistsException("Vehicle Already exists");
             }
             vehicle.setAvailabilityStatus(1);

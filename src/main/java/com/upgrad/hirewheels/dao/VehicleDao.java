@@ -12,7 +12,9 @@ import java.util.Optional;
 public interface VehicleDao extends JpaRepository<Vehicle, Integer> {
 //    public List<Vehicle> getVehicleByUser(User user);
 
-    List<Vehicle> getVehicleByVehicleSubcategory(VehicleSubcategory vehicleSubcategory);
+    List<Vehicle> findByVehicleSubcategory(VehicleSubcategory vehicleSubcategory);
 
-    Optional<Vehicle> getVehicleByVehicleNumber(String vehicleNumber);
+    Optional<Vehicle> findByVehicleNumber(String vehicleNumber);
+
+    List<Vehicle> findByUser(User user);
 }

@@ -2,6 +2,7 @@ package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -35,6 +36,29 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Booking> bookings;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Vehicle> vehicles;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return userId == user.userId &&
+                Double.compare(user.walletMoney, walletMoney) == 0 &&
+                firstName.equals(user.firstName) &&
+                lastName.equals(user.lastName) &&
+                password.equals(user.password) &&
+                email.equals(user.email) &&
+                mobileNo.equals(user.mobileNo);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, firstName, lastName, password, email, mobileNo, walletMoney);
+    }
+
     public User(String firstName, String lastName, String password, String email, String mobileNo, double walletMoney, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +70,17 @@ public class User {
     }
 
     public User() {
+    }
+
+    public User(int userId, String firstName, String lastName, String password, String email, String mobileNo, double walletMoney, Role role) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.mobileNo = mobileNo;
+        this.walletMoney = walletMoney;
+        this.role = role;
     }
 
     public int getUserId() {
@@ -125,4 +160,6 @@ public class User {
                 ", role=" + role +
                 '}';
     }
+
+
 }
