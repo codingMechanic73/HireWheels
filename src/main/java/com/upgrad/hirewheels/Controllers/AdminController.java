@@ -13,6 +13,8 @@ import com.upgrad.hirewheels.services.AdminService;
 import com.upgrad.hirewheels.services.VehicleService;
 import com.upgrad.hirewheels.utils.EntityDTOConverter;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -36,8 +38,11 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    private static Logger logger = LoggerFactory.getLogger(AdminController.class);
+
     @PostMapping("hirewheels/v1/vehicles")
     public ResponseEntity<SuccessDTO> addVehicle(@RequestBody VehicleDTO vehicleDTO) throws UserNotRegisteredException, UnauthorizedUserException, VehicleAlreadyExistsException {
+        logger.debug("Adding new Vehicle", vehicleDTO);
         entityDTOConverter.convertToVehicleEntity(vehicleDTO);
         adminService.registerVehicle(entityDTOConverter.convertToVehicleEntity(vehicleDTO));
         System.out.println(vehicleDTO);
@@ -45,16 +50,19 @@ public class AdminController {
         reponse.timestamp = new Date();
         reponse.message = "Vehicle Added Successfully";
         reponse.statusCode = 200;
+        logger.info("new Vehicle was added successfully");
         return new ResponseEntity<>(reponse, HttpStatus.CREATED);
     }
 
     @PutMapping("hirewheels/v1/vehicles/{id}")
     public ResponseEntity<SuccessDTO> updateStatus(@PathVariable("id") int id, @RequestParam("availabilityStatus") int availabilityStatus) throws UserNotRegisteredException, UnauthorizedUserException, VehicleAlreadyExistsException, VehicleNotFoundException {
+        logger.debug("updating status for vehicle " + id);
         adminService.changeAvailability(id, availabilityStatus);
         SuccessDTO reponse = new SuccessDTO();
         reponse.timestamp = new Date();
         reponse.message = "Vehicle Added Successfully";
         reponse.statusCode = 200;
+        logger.info("status for vehicle " + id + " updated successfully");
         return new ResponseEntity<>(reponse, HttpStatus.ACCEPTED);
     }
 
