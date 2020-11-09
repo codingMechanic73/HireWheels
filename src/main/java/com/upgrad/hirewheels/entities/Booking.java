@@ -1,7 +1,7 @@
 package com.upgrad.hirewheels.entities;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class Booking {
@@ -11,13 +11,13 @@ public class Booking {
     private int bookingId;
 
     @Column(nullable = false)
-    private Date pickupDate;
+    private LocalDateTime pickupDate;
 
     @Column(nullable = false)
-    private Date dropoffDate;
+    private LocalDateTime dropoffDate;
 
     @Column(nullable = false)
-    private Date bookingDate;
+    private LocalDateTime bookingDate;
 
     @Column(nullable = false)
     private double amount;
@@ -37,7 +37,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(Date pickupDate, Date dropoffDate, Date bookingDate, double amount, Location location, Vehicle vehicle, User user) {
+    public Booking(LocalDateTime pickupDate, LocalDateTime dropoffDate, LocalDateTime bookingDate, double amount, Location location, Vehicle vehicle, User user) {
         this.pickupDate = pickupDate;
         this.dropoffDate = dropoffDate;
         this.bookingDate = bookingDate;
@@ -55,27 +55,27 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public Date getPickupDate() {
+    public LocalDateTime getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(Date pickupDate) {
+    public void setPickupDate(LocalDateTime pickupDate) {
         this.pickupDate = pickupDate;
     }
 
-    public Date getDropoffDate() {
+    public LocalDateTime getDropoffDate() {
         return dropoffDate;
     }
 
-    public void setDropoffDate(Date dropoffDate) {
+    public void setDropoffDate(LocalDateTime dropoffDate) {
         this.dropoffDate = dropoffDate;
     }
 
-    public Date getBookingDate() {
+    public LocalDateTime getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;
     }
 

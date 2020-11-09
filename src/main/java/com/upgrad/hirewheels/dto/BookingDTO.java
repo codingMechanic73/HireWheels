@@ -2,6 +2,7 @@ package com.upgrad.hirewheels.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class BookingDTO {
@@ -26,12 +27,12 @@ public class BookingDTO {
     }
 
     private int bookingId;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private LocalDateTime pickupDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private LocalDateTime dropoffDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date pickupDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date dropoffDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date bookingDate;
+    private LocalDateTime bookingDate;
     private double amount;
     private int locationId;
 
@@ -43,27 +44,27 @@ public class BookingDTO {
         this.bookingId = bookingId;
     }
 
-    public Date getPickupDate() {
+    public LocalDateTime getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(Date pickupDate) {
+    public void setPickupDate(LocalDateTime pickupDate) {
         this.pickupDate = pickupDate;
     }
 
-    public Date getDropoffDate() {
+    public LocalDateTime getDropoffDate() {
         return dropoffDate;
     }
 
-    public void setDropoffDate(Date dropoffDate) {
+    public void setDropoffDate(LocalDateTime dropoffDate) {
         this.dropoffDate = dropoffDate;
     }
 
-    public Date getBookingDate() {
+    public LocalDateTime getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;
     }
 

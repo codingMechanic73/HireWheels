@@ -52,8 +52,8 @@ public class VehicleServiceImpl implements VehicleService {
                 List<Booking> vehicleBookings = vehicle.getBookings();
                 boolean booked = false;
                 for (Booking vb : vehicleBookings) {
-                    if (!(booking.getPickupDate().before(vb.getPickupDate()) && booking.getDropoffDate().before(vb.getPickupDate())) ||
-                            !(booking.getPickupDate().after(vb.getDropoffDate()) && booking.getDropoffDate().after(vb.getDropoffDate()))) {
+                    if (!(booking.getPickupDate().isBefore(vb.getPickupDate()) && booking.getDropoffDate().isBefore(vb.getPickupDate())) ||
+                            !(booking.getPickupDate().isAfter(vb.getDropoffDate()) && booking.getDropoffDate().isAfter(vb.getDropoffDate()))) {
                         booked = true;
                         break;
                     }

@@ -2,11 +2,10 @@ package com.upgrad.hirewheels.Controllers;
 
 import com.upgrad.hirewheels.dto.BookingDTO;
 import com.upgrad.hirewheels.entities.Booking;
-import com.upgrad.hirewheels.exceptions.InsufficientBalanceException;
-import com.upgrad.hirewheels.exceptions.UnauthorizedUserException;
-import com.upgrad.hirewheels.exceptions.UserNotRegisteredException;
+import com.upgrad.hirewheels.exceptions.*;
 import com.upgrad.hirewheels.services.BookingService;
 import com.upgrad.hirewheels.utils.EntityDTOConverter;
+import com.upgrad.hirewheels.validators.BookingValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +24,15 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
+    @Autowired
+    private BookingValidator bookingValidator;
+
     private static Logger logger = LoggerFactory.getLogger(BookingController.class);
 
     @PostMapping("hirewheels/v1/booking")
-    public ResponseEntity<BookingDTO> addBooking(@RequestBody BookingDTO bookingDTO) throws UserNotRegisteredException, UnauthorizedUserException, InsufficientBalanceException {
+    public ResponseEntity<BookingDTO> addBooking(@RequestBody BookingDTO bookingDTO) throws UserNotRegisteredException, UnauthorizedUserException, InsufficientBalanceException, APIException, VehicleNotFoundException, LocationDoesntExistsException {
         logger.debug("adding new booking for vehicle", bookingDTO);
+        bookingValidator.validateAddBooking(bookingDTO);
         System.out.println(bookingDTO);
         Booking booking = entityDTOConverter.convertToBookingEntity(bookingDTO);
         Booking saveBooking = bookingService.addBooking(booking);

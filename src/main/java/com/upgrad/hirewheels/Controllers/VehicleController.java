@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,8 +31,8 @@ public class VehicleController {
 
     @GetMapping("hirewheels/v1/vehicles")
     public ResponseEntity<List<VehicleDTO>> getAllVehicles(@RequestParam(name = "categoryName", required = false) String categoryName,
-                                                           @RequestParam(name = "pickupDate", required = false)  @DateTimeFormat(pattern="yyyy-MM-dd") Date pickupDate,
-                                                           @RequestParam(name = "dropoffDate", required = false)  @DateTimeFormat(pattern="yyyy-MM-dd") Date dropDate,
+                                                           @RequestParam(name = "pickupDate", required = false)  @DateTimeFormat(pattern="yyyy-MM-dd") LocalDateTime pickupDate,
+                                                           @RequestParam(name = "dropoffDate", required = false)  @DateTimeFormat(pattern="yyyy-MM-dd") LocalDateTime dropDate,
                                                            @RequestParam(name = "locationId", required = false) Integer locationId) {
 
         List<VehicleDTO> responseVehicleList = new ArrayList<>();
