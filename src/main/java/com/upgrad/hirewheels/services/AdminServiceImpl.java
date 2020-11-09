@@ -19,36 +19,26 @@ public class AdminServiceImpl implements AdminService {
     private UserService userService;
 
     public Vehicle registerVehicle(
-            Vehicle vehicle,
-            User user)
-            throws UserNotRegisteredException, UnauthorizedUserException, VehicleAlreadyExistsException {
+            Vehicle vehicle)
+            throws VehicleAlreadyExistsException {
 
-        if (userService.getUsers(user).getRole().getRoleName().equals("ADMIN")) {
-            if (vehicleDao.findByVehicleNumber(vehicle.getVehicleNumber()).isPresent()) {
-                throw new VehicleAlreadyExistsException("Vehicle Already exists");
-            }
-            vehicle.setAvailabilityStatus(1);
-            return vehicleDao.save(vehicle);
-        } else {
-            throw new UnauthorizedUserException("You are unauthorized to register vehicle");
+
+        if (vehicleDao.findByVehicleNumber(vehicle.getVehicleNumber()).isPresent()) {
+            throw new VehicleAlreadyExistsException("Vehicle Already exists");
         }
+        vehicle.setAvailabilityStatus(1);
+        return vehicleDao.save(vehicle);
     }
+
 
     @Override
     public Vehicle changeAvailability(
-            Vehicle vehicle,
-            int status,
-            User user)
+            int vehicleId,
+            int status)
             throws UserNotRegisteredException, UnauthorizedUserException, VehicleNotFoundException {
-
-
-        if (userService.getUsers(user).getRole().getRoleName().equals("ADMIN")) {
-            Vehicle updatedVehicle = vehicleDao.findById(vehicle.getVehicleId()).orElseThrow(() -> new VehicleNotFoundException("Vehicle not found"));
-            updatedVehicle.setAvailabilityStatus(status);
-            return vehicleDao.save(updatedVehicle);
-        } else {
-            throw new UnauthorizedUserException("You are unauthorized to change the status");
-        }
+        Vehicle updatedVehicle = vehicleDao.findById(vehicleId).orElseThrow(() -> new VehicleNotFoundException("Vehicle not found"));
+        updatedVehicle.setAvailabilityStatus(status);
+        return vehicleDao.save(updatedVehicle);
 
     }
 }

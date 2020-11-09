@@ -6,6 +6,25 @@ import java.util.Date;
 
 public class BookingDTO {
 
+    private int userId;
+    private int vehicleId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(int vehicleId) {
+        this.vehicleId = vehicleId;
+    }
+
     private int bookingId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date pickupDate;
@@ -62,5 +81,19 @@ public class BookingDTO {
 
     public void setLocationId(int locationId) {
         this.locationId = locationId;
+    }
+
+    @Override
+    public String toString() {
+        return "BookingDTO{" +
+                "userId=" + userId +
+                ", vehicleId=" + vehicleId +
+                ", bookingId=" + bookingId +
+                ", pickupDate=" + pickupDate +
+                ", dropoffDate=" + dropoffDate +
+                ", bookingDate=" + bookingDate +
+                ", amount=" + amount +
+                ", locationId=" + locationId +
+                '}';
     }
 }

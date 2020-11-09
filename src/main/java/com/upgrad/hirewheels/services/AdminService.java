@@ -9,7 +9,7 @@ import com.upgrad.hirewheels.exceptions.VehicleNotFoundException;
 
 public interface AdminService {
 
-    Vehicle registerVehicle(Vehicle vehicle, User user) throws UserNotRegisteredException, UnauthorizedUserException, VehicleAlreadyExistsException;
+    Vehicle registerVehicle(Vehicle vehicle) throws UserNotRegisteredException, UnauthorizedUserException, VehicleAlreadyExistsException;
 
-    public Vehicle changeAvailability(Vehicle vehicle, int status, User user) throws VehicleNotFoundException, UserNotRegisteredException, UnauthorizedUserException;
+    public Vehicle changeAvailability(int vehicleId, int status) throws VehicleNotFoundException, UserNotRegisteredException, UnauthorizedUserException;
 }

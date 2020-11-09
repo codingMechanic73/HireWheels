@@ -9,10 +9,12 @@ import com.upgrad.hirewheels.exceptions.InsufficientBalanceException;
 import com.upgrad.hirewheels.exceptions.UnauthorizedUserException;
 import com.upgrad.hirewheels.exceptions.UserNotRegisteredException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.naming.InsufficientResourcesException;
 
+@Service
 public class BookingServiceImpl implements BookingService {
 
     @Autowired

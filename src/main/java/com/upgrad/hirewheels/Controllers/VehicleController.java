@@ -21,8 +21,9 @@ import java.util.List;
 @RestController()
 public class VehicleController {
 
+
     @Autowired
-    private ModelMapper modelMapper;
+    private EntityDTOConverter entityDTOConverter;
 
     @Autowired
     private VehicleService vehicleService;
@@ -36,7 +37,7 @@ public class VehicleController {
         List<VehicleDTO> responseVehicleList = new ArrayList<>();
         if (StringUtils.isEmpty(categoryName) || pickupDate == null || dropDate == null || locationId == null) {
             List<Vehicle> vehicles = vehicleService.getAllVehicles();
-            vehicles.forEach(vehicle -> responseVehicleList.add(EntityDTOConverter.convertToVehicleDTO(vehicle)));
+            vehicles.forEach(vehicle -> responseVehicleList.add(entityDTOConverter.convertToVehicleDTO(vehicle)));
         }
         else {
             Booking booking = new Booking();
@@ -46,9 +47,8 @@ public class VehicleController {
             booking.setPickupDate(pickupDate);
             booking.setDropoffDate(dropDate);
             booking.setLocation(location);
-
             List<Vehicle> vehicles = vehicleService.getAvailableVehicles(categoryName, booking);
-            vehicles.forEach(vehicle -> responseVehicleList.add(EntityDTOConverter.convertToVehicleDTO(vehicle)));
+            vehicles.forEach(vehicle -> responseVehicleList.add(entityDTOConverter.convertToVehicleDTO(vehicle)));
         }
 
 

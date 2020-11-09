@@ -1,6 +1,6 @@
 package com.upgrad.hirewheels.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
 
 public class VehicleDTO {
@@ -8,13 +8,30 @@ public class VehicleDTO {
     private int vehicleId;
     private String vehicleModel;
     private String vehicleNumber;
-    private int vehicleSubcategoryId;
+    private int vehicleSubCategoryId;
     private String color;
     private int locationId;
     private String fuelType;
-    @JsonProperty("availability_status")
+    private int fuelTypeId;
     private int availabilityStatus;
+    @JsonAlias("carImageUrl")
     private String vehicleImageUrl;
+
+    @Override
+    public String toString() {
+        return "VehicleDTO{" +
+                "vehicleId=" + vehicleId +
+                ", vehicleModel='" + vehicleModel + '\'' +
+                ", vehicleNumber='" + vehicleNumber + '\'' +
+                ", vehicleSubCategoryId=" + vehicleSubCategoryId +
+                ", color='" + color + '\'' +
+                ", locationId=" + locationId +
+                ", fuelType='" + fuelType + '\'' +
+                ", fuelTypeId='" + fuelTypeId + '\'' +
+                ", availabilityStatus=" + availabilityStatus +
+                ", vehicleImageUrl='" + vehicleImageUrl + '\'' +
+                '}';
+    }
 
     public int getVehicleId() {
         return vehicleId;
@@ -40,12 +57,12 @@ public class VehicleDTO {
         this.vehicleNumber = vehicleNumber;
     }
 
-    public int getVehicleSubcategoryId() {
-        return vehicleSubcategoryId;
+    public int getVehicleSubCategoryId() {
+        return vehicleSubCategoryId;
     }
 
-    public void setVehicleSubcategoryId(int vehicleSubcategoryId) {
-        this.vehicleSubcategoryId = vehicleSubcategoryId;
+    public void setVehicleSubCategoryId(int vehicleSubCategoryId) {
+        this.vehicleSubCategoryId = vehicleSubCategoryId;
     }
 
     public String getColor() {
@@ -70,6 +87,14 @@ public class VehicleDTO {
 
     public void setFuelType(String fuelType) {
         this.fuelType = fuelType;
+    }
+
+    public int getFuelTypeId() {
+        return fuelTypeId;
+    }
+
+    public void setFuelTypeId(int fuelTypeId) {
+        this.fuelTypeId = fuelTypeId;
     }
 
     public int getAvailabilityStatus() {
