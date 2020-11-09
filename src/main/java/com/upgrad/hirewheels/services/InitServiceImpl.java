@@ -33,15 +33,24 @@ public class InitServiceImpl implements InitService {
     @Autowired
     private LocationDao locationDAO;
 
+    @Autowired
+    private VehicleDao vehicleDao;
+
 
     public void start() {
-        addUserRole();
-        addUsers();
-        addVehicleCategory();
-        addVehicleSubCategory();
-        addCity();
-        addFuelType();
-        addLocation();
+//        addUserRole();
+//        addUsers();
+//        addVehicleCategory();
+//        addVehicleSubCategory();
+//        addCity();
+//        addFuelType();
+//        addLocation();
+        addVehicle();
+    }
+
+    private void addVehicle() {
+        Vehicle vehicle = new Vehicle("1","1234", vehicleSubCategoryDAO.findById(6).get(), "red", locationDAO.findById(14).get(), fuelTypeDAO.findById(12).get(), 1, "this is a url");
+        vehicleDao.save(vehicle);
     }
 
     private void addLocation() {

@@ -1,6 +1,7 @@
 package com.upgrad.hirewheels.services;
 
 
+import com.upgrad.hirewheels.dao.VehicleCategoryDao;
 import com.upgrad.hirewheels.dao.VehicleDao;
 import com.upgrad.hirewheels.dao.VehicleSubcategoryDao;
 import com.upgrad.hirewheels.entities.*;
@@ -14,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +29,9 @@ class VehicleServiceTest {
 
     @Mock
     private VehicleSubcategoryDao vehicleSubcategoryDao;
+
+    @Mock
+    private VehicleCategoryDao vehicleCategoryDao;
 
     @InjectMocks
     private VehicleServiceImpl vehicleService;
@@ -49,7 +54,7 @@ class VehicleServiceTest {
         Mockito.when(vehicleDao.findByUser(new User("Upgrad", "Admin", "admin@123", "upgrad@gmail.com",
                 "9999999998", 10000, new Role()))).thenReturn(vehicles);
 
-        Mockito.when(vehicleDao.findByVehicleSubcategory(new VehicleSubcategory())).thenReturn(vehicles);
+        Mockito.when(vehicleCategoryDao.findByVehicleCategoryName("booking")).thenReturn(new VehicleCategory());
     }
 
 
@@ -75,7 +80,7 @@ class VehicleServiceTest {
     public void testAvailableVehicles() {
         Booking booking = new Booking();
         booking.setLocation(location);
-        List<Vehicle> vehicles = vehicleService.getAvailableVehicles(new VehicleSubcategory(), booking);
+        List<Vehicle> vehicles = vehicleService.getAvailableVehicles("bike", booking);
         Assertions.assertNotNull(vehicles);
         Assertions.assertTrue(vehicles.size() != 0);
         Assertions.assertNotNull(vehicles.get(1));

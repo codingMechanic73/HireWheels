@@ -42,6 +42,14 @@ public class VehicleCategory {
         this.vehicleCategoryName = vehicleCategoryName;
     }
 
+    public List<VehicleSubcategory> getVehicleSubcategories() {
+        return vehicleSubcategories;
+    }
+
+    public void setVehicleSubcategories(List<VehicleSubcategory> vehicleSubcategories) {
+        this.vehicleSubcategories = vehicleSubcategories;
+    }
+
     @Override
     public String toString() {
         return "VehicleCategory{" +

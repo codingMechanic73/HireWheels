@@ -44,6 +44,7 @@ public class Vehicle {
     @JoinColumn(name = "user_id")
     private User user;
 
+
     public Vehicle() {
     }
 
