@@ -9,8 +9,9 @@ import com.upgrad.hirewheels.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.xml.validation.ValidatorHandler;
-
+/**
+ * This class is used to convert DTO to Entity and vise versa
+ */
 @Component
 public class EntityDTOConverter {
 
@@ -40,6 +41,7 @@ public class EntityDTOConverter {
         vehicleDTO.setColor(vehicle.getColor());
         vehicleDTO.setLocationId(vehicle.getLocation().getLocationId());
         vehicleDTO.setFuelType(vehicle.getFuelType().getFuelType());
+        vehicleDTO.setFuelTypeId(vehicle.getFuelType().getFuelTypeId());
         vehicleDTO.setAvailabilityStatus(vehicle.getAvailabilityStatus());
         vehicleDTO.setVehicleImageUrl(vehicle.getVehicleImageUrl());
         return vehicleDTO;
@@ -79,7 +81,7 @@ public class EntityDTOConverter {
         bookingDTO.setDropoffDate(booking.getDropoffDate());
         bookingDTO.setBookingDate(booking.getBookingDate());
         bookingDTO.setLocationId(booking.getLocation().getLocationId());
-        bookingDTO.setAmount(bookingDTO.getAmount());
+        bookingDTO.setAmount(booking.getAmount());
         bookingDTO.setBookingId(booking.getBookingId());
         return bookingDTO;
     }

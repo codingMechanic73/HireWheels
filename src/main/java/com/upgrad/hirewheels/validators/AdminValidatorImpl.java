@@ -4,8 +4,19 @@ import com.upgrad.hirewheels.dto.VehicleDTO;
 import com.upgrad.hirewheels.exceptions.APIException;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * This is a validation class for input received by admin controller
+ */
 @Component
 public class AdminValidatorImpl implements AdminValidator {
+
+
+    /**
+     * This method checks if the vehicle input given by user is valid or not
+     * @param vehicleDTO
+     * @throws APIException
+     */
     @Override
     public void validateAddVehicle(VehicleDTO vehicleDTO) throws APIException {
 
@@ -32,6 +43,12 @@ public class AdminValidatorImpl implements AdminValidator {
         }
     }
 
+    /**
+     * This method checks if the status given is valid or not
+     * @param vehicleId
+     * @param availablityStatus
+     * @throws APIException
+     */
     @Override
     public void validChangeVehicleAvailability(int vehicleId, int availablityStatus) throws APIException {
         if (vehicleId <= 0) {

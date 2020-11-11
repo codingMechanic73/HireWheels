@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class BookingController {
 
     private static Logger logger = LoggerFactory.getLogger(BookingController.class);
 
-    @PostMapping("hirewheels/v1/booking")
+    @PostMapping(value = "hirewheels/v1/booking", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookingDTO> addBooking(@RequestBody BookingDTO bookingDTO) throws UserNotRegisteredException, UnauthorizedUserException, InsufficientBalanceException, APIException, VehicleNotFoundException, LocationDoesntExistsException {
         logger.debug("adding new booking for vehicle", bookingDTO);
         bookingValidator.validateAddBooking(bookingDTO);

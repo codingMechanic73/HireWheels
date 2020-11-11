@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This class prefills the database with few values
+ */
 @Service
 public class InitServiceImpl implements InitService {
 
@@ -38,18 +41,18 @@ public class InitServiceImpl implements InitService {
 
 
     public void start() {
-//        addUserRole();
-//        addUsers();
-//        addVehicleCategory();
-//        addVehicleSubCategory();
-//        addCity();
-//        addFuelType();
-//        addLocation();
+        addUserRole();
+        addUsers();
+        addVehicleCategory();
+        addVehicleSubCategory();
+        addCity();
+        addFuelType();
+        addLocation();
         addVehicle();
     }
 
     private void addVehicle() {
-        Vehicle vehicle = new Vehicle("1","1234", vehicleSubCategoryDAO.findById(6).get(), "red", locationDAO.findById(14).get(), fuelTypeDAO.findById(12).get(), 1, "this is a url");
+        Vehicle vehicle = new Vehicle("1", "1234", vehicleSubCategoryDAO.findById(7).get(), "red", locationDAO.findById(14).get(), fuelTypeDAO.findById(12).get(), 1, "https://labmorghini.com/a.jpg");
         vehicleDao.save(vehicle);
     }
 
@@ -113,7 +116,7 @@ public class InitServiceImpl implements InitService {
 
 
     private void addUsers() {
-        User adminUser = new User("Upgrad", "Admin", "admin@123", "upgrad@gmail.com",
+        User adminUser = new User(1,"Upgrad", "Admin", "admin@123", "upgrad@gmail.com",
                 "9999999999", 10000, userRoleDAO.findById(1).get());
         userDAO.save(adminUser);
     }

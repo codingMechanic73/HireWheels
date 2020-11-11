@@ -7,8 +7,8 @@ public class CustomResponse {
     private String message;
     private int statusCode;
 
-    public CustomResponse(LocalDateTime timestamp, String message, int statusCode) {
-        this.timestamp = timestamp;
+    public CustomResponse(String message, int statusCode) {
+        this.timestamp = LocalDateTime.now();
         this.message = message;
         this.statusCode = statusCode;
     }

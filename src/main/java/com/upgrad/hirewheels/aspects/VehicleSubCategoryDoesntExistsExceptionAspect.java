@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 public class VehicleSubCategoryDoesntExistsExceptionAspect extends Exception {
     @ExceptionHandler(VehicleSubCategoryDoesntExistsException.class)
     public ResponseEntity<CustomResponse> handleVehicleSubCategoryDoesntExistsExceptionException(Exception e) {
-        CustomResponse response = new CustomResponse(LocalDateTime.now(), e.getMessage(), HttpStatus.EXPECTATION_FAILED.value());
-        return new ResponseEntity<>(response, HttpStatus.EXPECTATION_FAILED);
+        CustomResponse response = new CustomResponse(e.getMessage(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
     }
 }

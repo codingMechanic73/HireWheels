@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 public class VehicleAlreadyExistsExceptionAspect {
 
     @ExceptionHandler(VehicleAlreadyExistsException.class)
-    public ResponseEntity<CustomResponse> handleVehicleAlreadyExistsException(Exception e){
-        CustomResponse response = new CustomResponse(LocalDateTime.now(), e.getMessage(), HttpStatus.EXPECTATION_FAILED.value());
-        return  new ResponseEntity<>(response, HttpStatus.EXPECTATION_FAILED);
+    public ResponseEntity<CustomResponse> handleVehicleAlreadyExistsException(Exception e) {
+        CustomResponse response = new CustomResponse(e.getMessage(), HttpStatus.CONFLICT.value());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 }

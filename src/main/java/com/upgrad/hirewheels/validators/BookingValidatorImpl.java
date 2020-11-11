@@ -6,8 +6,17 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+/**
+ * This is a validation class for booking controller class
+ */
 @Component
 public class BookingValidatorImpl implements BookingValidator {
+
+    /**
+     * This method validates if the inputs for booking are valid or not
+     * @param bookingDTO
+     * @throws APIException
+     */
     @Override
     public void validateAddBooking(BookingDTO bookingDTO) throws APIException {
         if (bookingDTO.getUserId() <= 0) {
@@ -23,10 +32,10 @@ public class BookingValidatorImpl implements BookingValidator {
             throw new APIException("Invalid pickup date");
         }
         if (bookingDTO.getDropoffDate() == null) {
-            throw new APIException("Invalid pickup date");
+            throw new APIException("Invalid dropoff date");
         }
         if (bookingDTO.getBookingDate() == null) {
-            throw new APIException("Invalid pickup date");
+            throw new APIException("Invalid booking date");
         }
         if (bookingDTO.getPickupDate().isAfter(bookingDTO.getDropoffDate())) {
             throw new APIException("Drop-off date should be greater than today's date and greater than the pickup date");

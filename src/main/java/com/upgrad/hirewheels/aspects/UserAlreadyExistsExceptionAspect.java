@@ -14,8 +14,8 @@ public class UserAlreadyExistsExceptionAspect {
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<CustomResponse> handleUserAlreadyExistsException(Exception e) {
-        CustomResponse response = new CustomResponse(LocalDateTime.now(), e.getMessage(), HttpStatus.EXPECTATION_FAILED.value());
-        return new ResponseEntity<>(response, HttpStatus.EXPECTATION_FAILED);
+        CustomResponse response = new CustomResponse(e.getMessage(), HttpStatus.CONFLICT.value());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
 
     }
 }

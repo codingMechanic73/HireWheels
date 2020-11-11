@@ -14,8 +14,8 @@ public class LocationDoesntExistsExceptionAspect {
 
     @ExceptionHandler(LocationDoesntExistsException.class)
     public ResponseEntity<CustomResponse> handleLocationDoesntExistsException(Exception e) {
-        CustomResponse response = new CustomResponse(LocalDateTime.now(), e.getMessage(), HttpStatus.EXPECTATION_FAILED.value());
-        return new ResponseEntity<>(response, HttpStatus.EXPECTATION_FAILED);
+        CustomResponse response = new CustomResponse(e.getMessage(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
     }
 }

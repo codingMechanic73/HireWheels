@@ -1,6 +1,7 @@
 package com.upgrad.hirewheels.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 public class VehicleDTO {
@@ -12,6 +13,7 @@ public class VehicleDTO {
     private String color;
     private int locationId;
     private String fuelType;
+//    @JsonIgnore
     private int fuelTypeId;
     private int availabilityStatus;
     @JsonAlias("carImageUrl")

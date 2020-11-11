@@ -15,6 +15,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * This method creates user if doesn't exists and the mobile number is not in use
+     *
+     * @param user
+     * @return
+     * @throws UserAlreadyExistsException
+     * @throws MobileNoAlreadyExists
+     */
     @Override
     public User createUser(User user) throws UserAlreadyExistsException, MobileNoAlreadyExists {
         if (userDao.findByEmail(user.getEmail()).isPresent()) {
@@ -26,6 +34,14 @@ public class UserServiceImpl implements UserService {
         return userDao.save(user);
     }
 
+    /**
+     * This method returns user if the valid credentials are provided
+     *
+     * @param user
+     * @return
+     * @throws UserNotRegisteredException
+     * @throws UnauthorizedUserException
+     */
     @Override
     public User getUsers(User user) throws UserNotRegisteredException, UnauthorizedUserException {
         User loggedUser = userDao.findByEmail(user.getEmail()).orElseThrow(
